@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cash_bet: 1
+  color_bet: MyString
+  user: one
+  roulette: one
+
+two:
+  cash_bet: 1
+  color_bet: MyString
+  user: two
+  roulette: two

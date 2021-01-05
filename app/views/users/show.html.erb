@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @user.name %>
+</p>
+
+<p>
+  <strong>Money:</strong>
+  <%= @user.money %>
+</p>
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>
+
+
+
+<table style="width:100%">
+  <tr>
+    <th>Spin</th>
+    <th>Fecha</th> 
+    <th>Apuesta</th>
+    <th>Tombola</th>
+    <th>Resultado</th>
+    <th>Apuesta $</th>
+    <th>Total $</th>
+  </tr>
+  <tr>
+    <td>Numero spin</td>
+    <td>Cuando fue</td> 
+    <td>Rojo</td>
+    <td>Rojo</td>
+    <td>Gano</td>
+    <td>500</td>
+    <td>10500</td>
+  </tr>
+
+</table>
