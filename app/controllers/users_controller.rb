@@ -61,6 +61,30 @@ class UsersController < ApplicationController
     end
   end
 
+
+  def resta_saldo
+
+    @user = User.find(2)
+    @bet = Bet.find(Bet.last.id)
+    
+    
+
+    if Roulette.last.result == @bet.color_bet
+      @user.money += Bet.last.cash_bet
+    else
+      @user.money -= Bet.last.cash_bet
+    end 
+    @user.save
+
+
+
+
+
+
+    redirect_to roulettes_index_path
+
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user

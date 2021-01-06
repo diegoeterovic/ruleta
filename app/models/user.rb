@@ -1,5 +1,5 @@
 class User < ApplicationRecord
 
-    has_one :bet
+    has_many :bets
 
 end
