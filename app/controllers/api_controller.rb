@@ -4,7 +4,7 @@ class ApiController < ApplicationController
         require "net/http"
         require "json"
 
-        url = URI("https://api.openweathermap.org/data/2.5/onecall?lat=-33.45694&lon=-70.64827&exclude=minutely,hourly,current&units=metric&fields=temp&appid=7776823366e5dca08cf00319c3c436fa")
+        url = URI("https://api.openweathermap.org/data/2.5/onecall?lat=-33.45694&lon=-70.64827&exclude=minutely,hourly,current&units=metric&fields=temp&appid=")
 
         https = Net::HTTP.new(url.host, url.port)
         https.use_ssl = true
