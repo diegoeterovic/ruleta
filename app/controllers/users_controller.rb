@@ -64,13 +64,17 @@ class UsersController < ApplicationController
 
   def resta_saldo
 
-    @user = User.find(2)
+    @user = User.last
     @bet = Bet.find(Bet.last.id)
     
     
 
     if Roulette.last.result == @bet.color_bet
-      @user.money += Bet.last.cash_bet
+      if @bet.color_bet == "verde"
+        @user.money += Bet.last.cash_bet*15
+      else
+      @user.money += Bet.last.cash_bet 
+      end
     else
       @user.money -= Bet.last.cash_bet
     end 

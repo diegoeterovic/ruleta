@@ -1,63 +1,72 @@
-<h1>Roulette</h1>
-<p>Aquí puedes rollear manualmente</p>
-<%= link_to "Roll", roulettes_create_path, method: :get %>
+<% if !@users.any? %>
+  <p> Debes crear un usuario primero </p>
 
-<table>
-  <thead>
-    <tr>
-      <th>Result</th>
-      <th>Date</th>
-      <% @users.each do |user| %>
-        <th> <%= user.name %> </th>
-        <% end %> 
-      <th>Resultado</th>
-      <th>Ganancia / Perdida</th>
-      <th>Saldo</th>
-    </tr>
-  </thead>
+<% else %>
 
-  <tbody>
-    <% @rolls.each do |draw| %>
+  <h1>Roulette</h1>
+  <p>Aquí puedes rollear manualmente</p>
+  <%= link_to "Roll", roulettes_create_path, method: :get %>
+  <p>Usuario: <th><%= User.last.name %></th></p>
+  <p>Saldo: <th><%= User.last.money %></th></p>
+  <table>
+    <thead>
       <tr>
-        <td><%= draw.result %></td>
-        <td><%= draw.created_at %></td>
-        <td>
-          
-            <% draw.bets.each do |bet| %>
-            <%= bet.color_bet %>
-            <% end %>
-          
-        </td>
+        <th>Result</th>
+        <th>Date</th>
+        <th>Jugó</th>
+        <th>Resultado</th>
+        <th>Apuesta $</th>
+        <th>Ganancia / Perdida</th>
 
-
-        <td>
-        
-          <% if draw.result == draw.bets.map { |bet| bet.color_bet }[0]  %>
-            <%= "Gano" %>
-          <% else %>
-            <%= "Perdió" %>
-          <% end %></td>
-
-        <td>
-
-          <% if draw.result == draw.bets.map { |bet| bet.color_bet }[0]  %>
-            <%= draw.bets.map { |bet| bet.cash_bet }[0]  %>
-          <% else %>
-            <%= draw.bets.map { |bet| bet.cash_bet*-1 }[0]   %>
-          <% end %>
-
-        </td> 
-        <td>
-          <% @users.each do |user| %>
-            <th><%= user.money %> </th>
-          <% end %> 
-        </td>
-
-
-
-        
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @rolls.each do |draw| %>
+        <tr>
+          <td><%= draw.result %></td>
+
+          <td><%= draw.created_at %></td>
+
+          <td>
+              <% draw.bets.each do |bet| %>
+              <%= bet.color_bet %>
+              <% end %>
+          </td>
+          
+          <td>
+            <% if draw.result == draw.bets.map { |bet| bet.color_bet }[0]  %>
+              <%= "Gano" %>
+            <% else %>
+              <%= "Perdió" %>
+            <% end %>
+          </td>
+          
+          <td>
+            <% if draw.result == draw.bets.map { |bet| bet.color_bet }[0]  %>
+              <%= draw.bets.map { |bet| bet.cash_bet }[0]  %>
+            <% else %>
+              <%= draw.bets.map { |bet| bet.cash_bet*-1 }[0]   %>
+            <% end %>
+          </td> 
+
+          <td>
+            <% if draw.result == draw.bets.map { |bet| bet.color_bet }[0]  %>
+              <%  if draw.result == "verde" %>
+                <%= draw.bets.map { |bet| bet.cash_bet }[0]*15  %>
+              <% else %>
+                <%= draw.bets.map { |bet| bet.cash_bet }[0]  %>
+              <% end %>
+            <% else %>
+              <%= draw.bets.map { |bet| bet.cash_bet*-1 }[0]   %>
+            <% end %>
+          </td>
+
+
+
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
 

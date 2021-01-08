@@ -10,10 +10,10 @@ class BetsController < ApiController
 
   def user_bet
 
-    if User.find(2).money <= 1000
-      User.find(2).money
+    if User.last.money <= 1000
+      User.last.money
     else
-      call_api*User.find(2).money
+      call_api*User.last.money
     end
     
 
