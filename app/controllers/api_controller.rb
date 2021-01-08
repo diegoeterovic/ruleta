@@ -1,5 +1,5 @@
 class ApiController < ApplicationController
-    def call_api
+    def self.call_api
         require "uri"
         require "net/http"
         require "json"

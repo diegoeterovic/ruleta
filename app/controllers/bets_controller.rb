@@ -13,9 +13,8 @@ class BetsController < ApiController
     if User.last.money <= 1000
       User.last.money
     else
-      call_api*User.last.money
+      ApiController.call_api*User.last.money
     end
-    
 
   end
 

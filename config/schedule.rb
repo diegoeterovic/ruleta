@@ -11,7 +11,7 @@
 set :environment, "development"
 set :output, {:error => "log/cron_error_log.log", :standard => "log/cron_log.log"}
 
-every 1.minute do
+every 3.minutes do
   rake "roulette:roll"
 end
 #

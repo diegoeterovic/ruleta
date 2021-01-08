@@ -11,20 +11,10 @@ class RoulettesController < ApplicationController
 
 
   def create
-    colors = ["rojo", "verde", "negro"]
+    
     @roulette = Roulette.create(result: get_random)
-
-
-
-    
-    
-
-
-
-
     redirect_to bets_create_path
     
-
   end
 
 
